@@ -1,6 +1,6 @@
 ## Advanced JS: Homework 1
 
-**Estimated time: 60 mins. See the class page for how to submit.**  
+**Estimated time: 60 mins. See the class page for how to submit.**
 **Due Tuesday, Sep. 23 at 2pm**
 
 #### Part 1: Reddit Hot Stories
@@ -9,7 +9,7 @@ Use the template files in the `week1` directory to pull the top stories from Red
 
 #### Part 2: Refresh!
 
-Add a refresh button that rerenders your screen. Your button should not just refresh the page; it should clear the `<ul id="list"></ul>` and repopulate it.  
+Add a refresh button that rerenders your screen. Your button should not just refresh the page; it should clear the `<ul id="list"></ul>` and repopulate it.
 Hint:
 
     <!-- index.html -->
