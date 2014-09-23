@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <head>
+  <meta charset="utf-8">
   <!-- Make sure to include jQuery *before* your own Javascript -->
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="nv.d3.js"></script>
+  <link rel="stylesheet" type="text/css" href="nv.d3.css">
   <script src="script.js"></script>
 </head>
 <body>
   <h1>Top Reddit Stories:</h1>
   <ul id="list"></ul>
   <button id="refresh-button">Refresh</button>
+  <svg style="height:600px" id="chart" />
   <h1>White House Petitions:</h1>
   <ul id="petitions-list"></ul>
   <button id="refresh-button-petitions">Refresh</button>
