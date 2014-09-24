@@ -1,6 +1,7 @@
 var renderResponse = function(response) {
   // If you don't understand line 6, you may want to read up
   // on Javascript objects, in the slides or internet.
+  $('#list').empty();
   var scoreData = [
     {
       key: 'Score',
@@ -40,11 +41,14 @@ var renderResponse = function(response) {
     nv.utils.windowResize(chart.update);
     return chart;
   });
+  var time = new Date().getTime();
+  $('#list').append('Refreshed at ' + time);
 };
 
 var renderPetitionsResponse = function(response) {
   // If you don't understand line 6, you may want to read up
   // on Javascript objects, in the slides or internet.
+  $('#petitions-list').empty();
   var scoreData = [
     {
       key: 'Score',
@@ -77,6 +81,8 @@ var renderPetitionsResponse = function(response) {
     nv.utils.windowResize(chart.update);
     return chart;
   });
+  var time = new Date().getTime();
+  $('#petitions-list').append('Refreshed at ' + time);
 };
 
 $(document).ready(function() {
@@ -88,17 +94,11 @@ $(document).ready(function() {
 
   $("#refresh-button").click(function() {
     console.log('button clicked');
-    $('#list').empty();
     $.get("http://www.reddit.com/hot.json", renderResponse);
-    var time = new Date().getTime();
-    $('#list').append('Refreshed at ' + time);
   });
 
   $("#refresh-button-petitions").click(function() {
     console.log('button clicked');
-    $('#petitions-list').empty();
     $.get('http://localhost:8000/petitions.json', renderPetitionsResponse);
-    var time = new Date().getTime();
-    $('#petitions-list').append('Refreshed at ' + time);
   });
 });
