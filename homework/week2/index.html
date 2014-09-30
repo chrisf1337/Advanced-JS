@@ -2,12 +2,22 @@
 <head>
   <!-- Make sure to include jQuery *before* your own Javascript -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="nv.d3.js"></script>
+  <link rel="stylesheet" type="text/css" href="nv.d3.css">
   <script src="./script.js"></script>
 </head>
 <body>
   <div id="follow-dot" style="position: absolute; width: 20px; height: 20px; border-radius: 10px; background-color: blue;"></div>
   <h1>Top Reddit Stories:</h1>
-  <button id="refresh" style="float: right;">Refresh</button>
   <ul id="list"></ul>
+  <svg style='height:600px' id="chart" />
+  <button id="refresh" style="float: right;">Refresh</button>
+  <a href="" id="profile_pic_link"><img src="" id="profile_pic" /></a>
+  <form name="userIdSearchForm" id="userIdSearchForm">
+    <input type="text" name="userIdSearchBox" id="userIdSearchBox">
+    <input type="submit" value="Search">
+  </form>
+  <div id="error">That userID does not exist!</div>
 </body>
 </html>
