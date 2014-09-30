@@ -2,6 +2,7 @@
 $(document).ready(function() {
   $('#error').hide();
   $('#post_link_div').hide();
+  $('#post_error').hide();
   loadReddit();
   $("#refresh").click(function() {
     // Ex. 1: Refresh Refresher code here
@@ -18,7 +19,7 @@ $(document).ready(function() {
 
   $('#postForm').submit(function(event) {
     postToFB($('#postBox').val());
-    $('#post_link_div').show();
+    $('#error_post').hide();
     event.preventDefault();
   });
 
@@ -46,7 +47,6 @@ var postToFB = function(text) {
     url: 'https://graph.facebook.com/v2.1/me/feed',
     data: {
       message: text,
-      privacy: {'value': 'EVERYONE'},
       access_token: "CAACEdEose0cBAJQZAQCZB8xYv9hyztFDH3OxYTWFKZBmfUOh5nUbTmCdDvYXwwozIfQwEwDGU356Xf1IBfXMIP2ZAYiOVd9NRc8U4ZAZAqRQj4yVUndAEWutWRqsxMKBkgmGTmsUYSLpFn0Q2BWIJF2ZATF8UDPDYH8D4icy5dNYbq3CLkZBJZAPZASnzPfwmEGLYdmsPIwdEgEMdmlpLA9dtag7SXcVhBi9sZD"
     },
     success: function(response) {
@@ -54,9 +54,13 @@ var postToFB = function(text) {
       var postId = response.id.split('_');
       var postUrl = 'https://www.facebook.com/' + postId[0] + '/post/' + postId[1];
       $('#post_link').attr('href', postUrl);
+      $('#post_link_div').show();
     },
     error: function(jxqr, text) {
       console.log(jxqr, text);
+      $('#post_link').attr('href', '#');
+      $('#post_link_div').hide();
+      $('#post_error').show();
     }
   });
 };
