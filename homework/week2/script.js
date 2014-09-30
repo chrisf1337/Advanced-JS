@@ -1,6 +1,7 @@
 // Using the jQuery .ready() function!
 $(document).ready(function() {
   $('#error').hide();
+  $('#post_link_div').hide();
   loadReddit();
   $("#refresh").click(function() {
     // Ex. 1: Refresh Refresher code here
@@ -12,6 +13,12 @@ $(document).ready(function() {
   $('#userIdSearchForm').submit(function(event) {
     getFB($('#userIdSearchBox').val());
     $('#error').hide();
+    event.preventDefault();
+  });
+
+  $('#postForm').submit(function(event) {
+    postToFB($('#postBox').val());
+    $('#post_link_div').show();
     event.preventDefault();
   });
 
@@ -32,6 +39,27 @@ $(document).ready(function() {
 
   getFB($('#userIdSearchBox').val()); // Defined below
 });
+
+var postToFB = function(text) {
+  $.ajax({
+    method: 'POST',
+    url: 'https://graph.facebook.com/v2.1/me/feed',
+    data: {
+      message: text,
+      privacy: {'value': 'EVERYONE'},
+      access_token: "CAACEdEose0cBAJQZAQCZB8xYv9hyztFDH3OxYTWFKZBmfUOh5nUbTmCdDvYXwwozIfQwEwDGU356Xf1IBfXMIP2ZAYiOVd9NRc8U4ZAZAqRQj4yVUndAEWutWRqsxMKBkgmGTmsUYSLpFn0Q2BWIJF2ZATF8UDPDYH8D4icy5dNYbq3CLkZBJZAPZASnzPfwmEGLYdmsPIwdEgEMdmlpLA9dtag7SXcVhBi9sZD"
+    },
+    success: function(response) {
+      console.log(response);
+      var postId = response.id.split('_');
+      var postUrl = 'https://www.facebook.com/' + postId[0] + '/post/' + postId[1];
+      $('#post_link').attr('href', postUrl);
+    },
+    error: function(jxqr, text) {
+      console.log(jxqr, text);
+    }
+  });
+};
 
 // Ex. 2: Objectify Me code here
 // An example person
@@ -138,7 +166,7 @@ var getFB = function(userID) {
       // Access token obtained at https://developers.facebook.com/tools/explorer
       // Note that it expires after a while, so you occasionally need to go back
       //   and get another one.
-      access_token: "CAACEdEose0cBAFoUCcVt2y88TvfpoPB0bXCHO45eA3mpZCe9rhgblPbIX8Lmwwzq4fmLjOhZBkVByvBiA8cNENZAUq67XRyf55hUQC2u5bOIHAlXw9bKsvfqNAaiffP2n6tflQl9TvvfJ7KF2hDZBSt6pu4S1RF7XkyotXIN0cE5FzZAFOSbWrfsocRflIaBwKg7Em2ANxbt71GBCB5a4Qv3W43sZBW6EZD"
+      access_token: "CAACEdEose0cBAJQZAQCZB8xYv9hyztFDH3OxYTWFKZBmfUOh5nUbTmCdDvYXwwozIfQwEwDGU356Xf1IBfXMIP2ZAYiOVd9NRc8U4ZAZAqRQj4yVUndAEWutWRqsxMKBkgmGTmsUYSLpFn0Q2BWIJF2ZATF8UDPDYH8D4icy5dNYbq3CLkZBJZAPZASnzPfwmEGLYdmsPIwdEgEMdmlpLA9dtag7SXcVhBi9sZD"
     },
     success: function(response) {
       console.log(response);
@@ -156,4 +184,6 @@ var getFB = function(userID) {
       $('#error').show();
     }
   });
+
+
 };
