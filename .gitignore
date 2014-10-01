@@ -1,4 +1,12 @@
-solutions/
+repos
 notes
+
 .DS_Store
 homework/week1/petitions.json
+
+# Comment out as solutions are released
+# solutions/week1/
+# solutions/week2/
+solutions/week3/
+solutions/week4/
+solutions/week5/
