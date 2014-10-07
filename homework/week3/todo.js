@@ -23,6 +23,7 @@ angular.module("Todo", []).controller("TodoCtrl", function($scope, $window) {
   $scope.undo = function() {
     if ($scope.undoQueue.length > 0)
     {
+      console.log('undo!');
       var lastItem = $scope.undoQueue.pop();
       lastItem.done = false;
       $scope.todoList.push(lastItem);
@@ -31,8 +32,14 @@ angular.module("Todo", []).controller("TodoCtrl", function($scope, $window) {
 
   // Ex. 2 Bonus: Detect all keypresses
   angular.element($window).bind("keypress", function(e) {
-    console.log(e);
+    // console.log(e);
     // Do something with the event here
+    if (e.ctrlKey && e.which == 26)
+    {
+      var scope = angular.element('body > div').scope();
+      scope.undo();
+      scope.$apply();
+    }
   });
 });
 
