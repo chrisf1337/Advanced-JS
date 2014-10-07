@@ -1,0 +1,11 @@
+h1 {
+  padding-left: 40px;
+}
+
+.textbox {
+  margin-left: 40px;
+}
+
+.item.uncompleted {
+  font-weight: bold;
+}
