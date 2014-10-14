@@ -32,9 +32,15 @@ angular.module('MyApp') // Note: no dependencies
       $scope.points++;
       if ($scope.points == 10)
       {
-        $state.go('winner');
         $interval.cancel(boxInterval);
         $interval.cancel(timeInterval);
+        var params = {'points': $scope.points, 'time': $scope.time};
+        $state.go('winner', params);
       }
     };
+  })
+  .controller('WinCtrl', function($scope, $stateParams) {
+    console.log($stateParams);
+    $scope.points = $stateParams.points;
+    $scope.time = $stateParams.time;
   });
